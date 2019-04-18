@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <Document>
+        <name>2012 Earthquakes, Magnitude 5</name>
+        <atom:author>
+            <atom:name>U.S. Geological Survey</atom:name>
+        </atom:author>
+        <atom:link href="http://earthquake.usgs.gov"/>
+        <Folder>
+            <name>Magnitude 5</name>
+            <Placemark id="2012 Jan 15 13:40:16.40 UTC">
+                <name>M 5.9 - 2012 Jan 15, SOUTH SHETLAND ISLANDS</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>115.45685381,38.92176927</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="2012 Jan 19 06:48:48.75 UTC">
+                <name>M 5.9 - 2012 Jan 19, OFF W. COAST OF S. ISLAND, N.Z.</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>115.45659707,38.92176509</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="2012 Jan 28 17:42:51.72 UTC">
+                <name>M 5.9 - 2012 Jan 28, KERMADEC ISLANDS, NEW ZEALAND</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>115.45648903,38.92204472</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark id="2012 Feb 9 18:52:48.39 UTC">
+                <name>M 5.9 - 2012 Feb 9, MACQUARIE ISLAND REGION</name>
+                <magnitude>5.9</magnitude>
+                <Point>
+                    <coordinates>115.45685649,38.92203846</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

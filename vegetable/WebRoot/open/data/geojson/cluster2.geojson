@@ -1,0 +1,6 @@
+{"type": "FeatureCollection","features":[
+	{"id":"a1","properties":{"name":"Australia","state":"on"},"geometry": {"coordinates": [115.45520961284636,38.9234011016122],"type": "Point"},"type": "Feature"},
+	{"id":"a2","properties":{"name":"Australa2","state":"on"},"geometry": {"coordinates": [115.45607864856719,38.9233426733528],"type": "Point"},"type": "Feature"},
+	{"id":"a3","properties":{"name":"Austral3","state":"off"},"geometry": {"coordinates": [115.45686185359953,38.92325085741936],"type": "Point"},"type": "Feature"},
+	{"id":"a4","properties":{"name":"Austral4","state":"off"},"geometry": {"coordinates": [115.45789182186127,38.92333432645466],"type": "Point"},"type": "Feature"}
+]}

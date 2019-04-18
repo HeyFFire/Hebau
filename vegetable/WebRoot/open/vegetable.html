@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<meta http-equiv="Cache" content="no-cache">
+		<link rel="stylesheet" href="css/ol.css" type="text/css">
+		<link rel="stylesheet" href="css/common-setting.css" type="text/css">
+		<link rel="stylesheet" href="css/ol3-layerswitcher.css" />
+		<link rel="stylesheet" href="route/hint.min.css">
+		<style>
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#banner {
+	height: 66px;
+	background: #46906D url(images/top-3.jpg) no-repeat;
+}
+
+#logo {
+	height: 66px;
+	background: url(images/top-4.jpg) no-repeat center right;
+}
+
+#logo h2 {
+	margin: 0px;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: "楷体", "楷体_GB2312";
+	padding: 18px 0px 0px 790px;
+	color: #FFF;
+}
+
+.hsplit {
+	clear: both;
+	height: 4px;
+	background-color: #FFF;
+}
+
+#map {
+	height: 898px; /*1080大屏最佳分辨率 900px*/
+	width: 100%;
+	position: relative;
+}
+@media screen and (max-width: 1386px) {
+    #map{
+        height:620px;
+    }
+}
+.ol-attribution a {
+	color: black;
+}
+
+#css_animation {
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	background: rgba(255, 0, 0, 0.9);
+	transform: scale(0);
+	animation: myfirst 3s;
+	animation-iteration-count: infinite;
+}
+
+@
+keyframes myfirst {to { transform:scale(2);
+	background: rgba(0, 0, 0, 0);
+}
+
+}
+.ol-popup {
+	position: absolute;
+	background-color: white;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2) );
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2) );
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+	bottom: 22px;
+	left: -60px; /**/
+	width: 550px;
+}
+
+#machine-photo {
+	margin: 15px 0 0 5px;
+	width: 190px;
+	float: left;
+}
+
+#machine-info {
+	width: 300px;
+	float: right;
+	font-size: 14px;
+	margin: 15px 0 0 5px;
+}
+
+#machine-info li {
+	hieght: 20px;
+	line-height: 20px;
+}
+
+.ol-popup:after,.ol-popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.ol-popup:after {
+	border-top-color: white;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.ol-popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.popup-title {
+	font-weight: bold;
+	border-bottom: 1px solid #cccccc;
+	padding: 5px 8px;
+}
+
+.ol-popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.ol-popup-closer:after {
+	content: "✖";
+}
+
+.mouse-position-wrapper {
+	width: 300px;
+	height: 29px;
+	color: #95E8FF;
+	position: absolute;
+	right: 20px;
+	bottom: 6px;
+	z-index: 999;
+}
+
+#traceControl { /*width: 300px;
+	height: 29px;*/
+	color: #0A100E;
+	display: none;
+	/*background-color: white;*/
+	position: absolute;
+	top: 10px;
+	left: 550px;
+	/*right: 110px;
+	bottom: 56px;*/
+	z-index: 1000;
+}
+
+#traceNowControl { /*width: 300px;
+	height: 29px;*/
+	color: #0A100E;
+	display: none;
+	background-color: white; /**/
+	position: absolute;
+	top: 10px;
+	left: 260px;
+	/*right: 110px;
+	bottom: 56px;*/
+	z-index: 1000;
+}
+
+#traceHistory { /*width: 300px;
+	height: 29px;*/
+	color: #0A100E;
+	display: none;
+	/*background-color: white;*/
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	/*right: 110px;
+	bottom: 56px;*/
+	z-index: 1000;
+}
+
+#trackList {
+	background-color: white;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-right: auto;
+	margin-left: auto;
+	width: 500px;
+}
+
+.datainp {
+	width: 150px;
+	height: 20px;
+	border: 1px #ccc solid;
+}
+
+#trackList th,#trackList td {
+	border: 1px solid #b5d6e6;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	vertical-align: middle;
+	background-color: white;
+	height: 20px;
+}
+
+#trackList a {
+	text-decoration: none;
+}
+
+#trackList a:hover {
+	position: relative;
+	top: 2px;
+	left: 2px;
+	font-size: 14px;
+}
+
+#trackList th {
+	background-color: #53C2CF;
+}
+
+.tracehover {
+	background-color: #cccc00; /*鼠标滑过表格变色*/
+}
+
+.playingTr {
+	color: red;
+}
+
+/**
+   * search group css
+   */
+.search_group,.search_input,.search_button {
+	position: absolute;
+	z-index: 999;
+	top: 4px;
+}
+
+.search_input {
+	width: 180px;
+	height: 24px;
+	left: 50px;
+}
+
+.search_button {
+	width: 23px;
+	height: 23px;
+	line-height: 22px;
+	left: 230px;
+	top: 5px;
+}
+
+/*以上search */ /*以下遮罩*/
+#fullbg {
+	background-color: gray;
+	left: 0;
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+}
+
+#dialog {
+	background-color: #fff;
+	border: 5px solid rgba(0, 0, 0, 0.4);
+	height: 120px;
+	left: 50%;
+	margin: -200px 0 0 -200px;
+	padding: 1px;
+	position: fixed !important; /* 浮动对话框 */
+	position: absolute;
+	top: 50%;
+	width: 400px;
+	z-index: 5;
+	border-radius: 5px;
+	display: none;
+}
+
+#dialog p {
+	margin: 0 0 12px;
+	height: 24px;
+	line-height: 24px;
+	background: #CCCCCC;
+}
+
+#dialog p.close {
+	text-align: right;
+	padding-right: 10px;
+}
+
+#dialog p.close a {
+	color: #fff;
+	text-decoration: none;
+}
+
+#dialog-msg {
+	margin-top: 15px;
+	text-align: center;
+}
+
+#dialog-msg span {
+	color: red;
+}
+
+/*以上遮罩*/
+#search-tip {
+	background: url('images/hover.png') no-repeat center bottom;
+	width: 200px;
+	height: 70px;
+	position: absolute;
+	top: -75px;
+	left: 75px;
+	text-align:left;
+	padding: 10px;
+	font-style: normal;
+	z-index: 2;
+	display: none;/* */
+}
+#search-tip p{
+	font-size:14px;
+	height:22px;
+	line-height:22px;
+}
+
+/*以下消息窗口*/
+#msg-send{
+/*
+position:relative;
+width:150px;
+height:35px;
+background:#F8C301;
+border-radius:5px;  圆角
+margin:30px auto 0; */
+	font-size:12px;
+	left: 0px; 
+	width: 155px;
+	height:28px;
+	padding:5px 5px 5px 10px;
+}
+/*以上消息*/
+</style>
+		<script type="text/javascript" src="build/jquery.js">
+</script>
+		<script src="build/ol-debug.js" type="text/javascript">
+</script>
+		<script type="text/javascript" src="build/mytool.js">
+</script>
+		<script src="build/ol3-layerswitcher.js">
+</script>
+		<script type="text/javascript" src="jedate/jedate.js">
+</script>
+		<title>智能化蔬菜管理平台</title>
+	</head>
+	<body>
+		<!--  <input type="button" id="ceter" value="ceter" /><button id="zoomOut">Zoom Out</button>
+		<span>
+			<input type="checkbox" id="visible" checked>城市图层			
+    	</span>-->
+		<!-- <div id="css_animation"></div> -->
+		<div id="banner">
+			<div id="logo">
+				<h2>
+					<!--  蔬菜大棚管理系统-->
+				</h2>
+			</div>
+		</div>
+		<div class="hsplit"></div>
+<!-- ------------地图区域------------------------------------- -->
+		<div id="map" class="map">
+			<div id="search-tip">
+				<p>根据 机主姓名、电话、牌照</p><p>或智慧盒地址搜索农机</p>
+			</div>
+			<div id="search_group" class="search_group">
+				<input id="search_input" class="search_input" type="text"  value=""/>
+				<input id="search_button" class="search_button" type="image"
+					src="images/search.jpg" />
+			</div>
+			<div id="traceHistory">
+				<table id="trackList">
+					<!-- <tr><th>记录起始时间</th><th>记录结束时间</th><th>作业面积</th></tr>
+						<tr><td>111</td><td>2222</td><td>3</td></tr>  -->
+				</table>
+			</div>
+			<div id="traceControl">
+				<div>
+					<label for="speed">
+						速度:&nbsp;
+						<input id="speed" type="range" min="10" max="600" step="10"
+							value="1">
+					</label>
+					<button id="start-animation">
+						►
+					</button>
+				</div>
+			</div>
+			<div id="traceNowControl">
+				<button id="stop-nowTrace">
+					■
+				</button>
+			</div>
+<!-- -------------------点信息，与点击出现的图片信息----------------------------- -->
+			<div id="popup" class="ol-popup">
+				<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+				<div id="popup-title" class="popup-title">
+					<img id="machine-status-img" src="images/off.png" />
+					&nbsp&nbsp
+					<span id="machine-owner"><!-- 张广发&nbsp;&nbsp;&nbsp;新民蔬菜合作社&nbsp;&nbsp;&nbsp;面积：3000m<sup>2</sup> --></span>
+				</div>
+				<div id="popup-content" class="popup-content">
+					<img id="machine-photo" src="../images/m.jpg" />
+					<div id="machine-info">
+						<ul>
+						<!--  
+							<li>
+								<img src="images/box.png"/> 西红柿：
+								<span id="machine-daddress">黄瓜</span>
+							</li>
+							<li>
+								<img src="images/status.png"/>  
+								<span id="machine-status"></span>
+							</li>
+							<li>
+								<img src="images/clock.png"/> 定位时间：
+								<span id="machine-time"></span>
+							</li>
+							<li>
+								<img src="images/temperature.jpg"/> 温度：
+								<span id="machine-temperature">40.8 C</span>
+								C，<img src="images/humidity.jpg"/> 湿度：
+								<span id="machine-humidity">16</span>
+							</li>
+							-->
+							<li>
+								<img src="images/house.png"/> 归属地：
+								<span id="machine-address"></span>
+							</li>
+						</ul>
+						<button id="eagleEye">
+							鹰眼
+						</button>
+						<button id="see">
+							俯视
+						</button>
+						<button id="trace-history" onclick="javascript:location.href='../TraceServlet'"  >
+							查看详情
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- --------上点信息与点击信息--------------- -->
+
+		</div>
+<!-- ------------------上地图区------------------------------- -->
+		<div id="mouse-position" class="mouse-position-wrapper">
+			<div class="custom-mouse-position"></div>
+		</div>
+		<div id="fullbg"></div>
+		<div id="dialog">
+			<p class="close">
+				<a href="#" onclick="closeBg();">关闭</a>
+			</p>
+			<div id="dialog-msg">
+				正在加载，请稍后....
+			</div>
+		</div>
+		<div id="geo-marker" class="hint--no-animate hint--right hint--always"
+			data-hint=""></div>
+			
+			<div id="msg-send" class="ol-popup">				
+				收割 <span id="msg-content">5.2</span> 亩，短信已发出！
+			</div>
+	</body>
+	<script type="text/javascript" src="vegetable.js">
+</script>
+</html>

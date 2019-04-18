@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function () {
+    //JS 加载调用
+    $('#log').form({
+      url : 'LoginServlet',
+      onSubmit: function(){
+      var isValid = $(this).form('validate');
+		
+		return isValid;	// 返回false终止表单提交
+      },
+      success:function(data){
+      if(data==1)
+      {
+      
+        window.location.href="main.html";
+      }
+      else if(data==2)
+      {
+      alert("验证码有误");
+      }
+      else
+      {
+        alert(data);
+        $("#log").form('clear');
+        }
+      }
+    });
+    $("#cant").click(function(){
+    	$("#image").attr("src","ValidateCode?date="+new Date())
+    	
+    
+    });
+  });
+    </script>
+</head>
+<body>
+
+<div id="lg" class="easyui-layout" style="width:600px;height:600px;"data-options="fit:true">
+    <div data-options="region:'north',split:true,border:false,collapsible:false" style="height:100px;">
+        <img src="hebau.png" alt="photo" style="width: 100%;height: 100%"/>
+    </div>
+    <div data-options="region:'center',border:false" style="padding:5px;background:white;">
+        <div style="margin-left: 40%;margin-top:10%">
+            
+            <table>用户名:</table>
+            <form id="log">
+        <input id="username" name="username" type="text" class="easyui-validatebox" data-options="required:true" style="width: 200px;height: 30px" />
+        <br/><br/>
+            <table>密码:</table>
+        <input id="password" name="password" type="password" class="easyui-validatebox" data-options="required:true" style="width: 200px;height: 30px" />
+        <br/><br/>
+            <table>验证码</table><input type="text" name="validatetext">
+            <br/>
+            <img  id="image" alt="validate" src="ValidateCode" style="width:100px;height:50px"><a id="cant"href="#">看不清?</a></div>
+        <br/><br/>
+                <input  type="submit" value="提交" style="background:#1E90FF;margin-left:40%;font-family:Microsoft YaHei;color:white;border:0;width:100px;height:30px" />
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

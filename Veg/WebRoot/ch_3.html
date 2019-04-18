@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>信息查询</title>
+</head>
+<body>
+<script>
+    $(function()
+    {
+        $('#ch_3').datagrid({
+            url:'chServlet',
+            pagination:true,
+            pageList:[5,10,15],
+            fitColumns:true,
+            pageSize : 5,
+            loadMsg:'正在加载数据...', 
+            striped:true,
+            singleSelect:true,
+            rownumbers:true,
+            toolbar:'#tb_3'
+
+
+        });
+
+
+
+    })
+    function delet_3(){
+        var row = $('#ch_3').datagrid('getSelected');
+        var rowIndex = $('#ch_3').datagrid('getRowIndex', row);
+        var num = row.num;
+        $('#ch_3').datagrid('deleteRow', rowIndex);
+        $.get("delServlet",{num:num});
+    }
+    function add_3(){
+        $('#dia_3').dialog({
+            title: '信息添加',
+            width: 800,
+            height: 600,
+            closed: false,
+            cache: false,
+            href: 'info_3.html',
+            modal: true
+        });
+    }
+      function doSearch_3(){
+       
+      	var num = $('#itemid_3').val();
+      	$.get("seServlet",{num:num},function(data){
+      	
+      		$('#win_3').window({    
+    width:600,    
+    height:400,    
+    modal:true   
+});  
+		$('#win_3').html(data);
+      		
+      	});
+    }
+
+    
+    
+    
+       
+
+</script>
+<table id="ch_3">
+    <thead>
+    <tr>
+        <th data-options="field:'num'">大棚编号</th>
+        <th data-options="field:'water'">用水量</th>
+        <th data-options="field:'date'">灌溉日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>001</td><td>name1</td><td>2323</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    </tbody>
+
+</table>
+<div id="dia_3"></div>
+<div id="tb_3">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add_3()">添加</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delet_3()">删除</a>
+    <span>输入编码搜索:</span>
+    <input id="itemid_3" class="easyui-textbox">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="doSearch_3()">搜索</a>
+
+
+</div>
+<div id="win_3" style="text-align:center;font-size:20px;"></div>  
+
+</body>
+</html>

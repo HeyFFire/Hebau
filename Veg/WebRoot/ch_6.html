@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>信息查询</title>
+</head>
+<body>
+<script>
+    $(function()
+    {
+        $('#ch_6').datagrid({
+            url:'chServlet6',
+            pagination:true,
+            pageList:[5,10,15],
+            fitColumns:true,
+            pageSize : 5,
+            loadMsg:'正在加载数据...', 
+            striped:true,
+            singleSelect:true,
+            rownumbers:true,
+            toolbar:'#tb_6'
+
+
+        });
+
+
+
+    })
+    function delet_6(){
+        var row = $('#ch_6').datagrid('getSelected');
+        var rowIndex = $('#ch_6').datagrid('getRowIndex', row);
+        var num = row.num;
+        $('#ch_6').datagrid('deleteRow', rowIndex);
+        $.get("delServlet6",{num:num});
+    }
+    function add_6(){
+        $('#dia_6').dialog({
+            title: '信息添加',
+            width: 800,
+            height: 600,
+            closed: false,
+            cache: false,
+            href: 'info_6.html',
+            modal: true
+        });
+    }
+      function doSearch_6(){
+       
+      	var num = $('#itemid_6').val();
+      	$.get("seServlet6",{num:num},function(data){
+      	
+      		$('#win_6').window({    
+    width:600,    
+    height:400,    
+    modal:true   
+});  
+		$('#win_6').html(data);
+      		
+      	});
+    }
+
+    
+    
+    
+       
+
+</script>
+<table id="ch_6">
+    <thead>
+    <tr>
+        <th data-options="field:'num'">大棚编号</th>
+        <th data-options="field:'name'">收获物</th>
+        <th data-options="field:'ml'">收获物质量</th>
+        <th data-options="field:'date'">收获日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>001</td><td>name1</td><td>2323</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    </tbody>
+
+</table>
+<div id="dia_6"></div>
+<div id="tb_6">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add_6()">添加</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delet_6()">删除</a>
+    <span>输入编码搜索:</span>
+    <input id="itemid_6" class="easyui-textbox">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="doSearch_6()">搜索</a>
+
+
+</div>
+<div id="win_6" style="text-align:center;font-size:20px;"></div>  
+
+</body>
+</html>

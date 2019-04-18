@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>信息查询</title>
+</head>
+<body>
+<script>
+    $(function()
+    {
+        $('#ch').datagrid({
+            url:'chServlet1',
+            pagination:true,
+            pageList:[5,10,15],
+            fitColumns:true,
+            pageSize : 5,
+            loadMsg:'正在加载数据...', 
+            striped:true,
+            singleSelect:true,
+            rownumbers:true,
+            toolbar:'#tb'
+
+
+        });
+
+
+
+    })
+    function delet(){
+        var row = $('#ch').datagrid('getSelected');
+        var rowIndex = $('#ch').datagrid('getRowIndex', row);
+        var num = row.num;
+        $('#ch').datagrid('deleteRow', rowIndex);
+        $.get("delServlet1",{num:num});
+    }
+    function add(){
+        $('#dia').dialog({
+            title: '信息添加',
+            width: 800,
+            height: 600,
+            closed: false,
+            cache: false,
+            href: 'info.html',
+            modal: true
+        });
+    }
+      function doSearch(){
+       
+      	var num = $('#itemid').val();
+      	$.get("seServlet1",{num:num},function(data){
+      	
+      		$('#win').window({    
+    width:850,    
+    height:600,    
+    modal:true   
+});  
+		$('#win').html(data);
+      		
+      	});
+    }
+
+    
+    
+    
+       
+
+</script>
+<table id="ch">
+    <thead>
+    <tr>
+        <th data-options="field:'num'">大棚编号</th>
+        <th data-options="field:'province'">所在省</th>
+        <th data-options="field:'city'">所在市</th>
+        <th data-options="field:'county'">所在县(区)</th>
+        <th data-options="field:'village'">所在村</th>
+        <th data-options="field:'x'">经度</th>
+        <th data-options="field:'y'">纬度</th>
+        <th data-options="field:'iD'">身份证号</th>
+        <th data-options="field:'square'">面积</th>
+        <th data-options="field:'greenhouse'">大棚类型</th>
+        <th data-options="field:'main'">主体结构类型</th>
+        <th data-options="field:'date'">建造日期</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>001</td><td>name1</td><td>2323</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    <tr>
+        <td>002</td><td>name2</td><td>4612</td>
+    </tr>
+    </tbody>
+
+</table>
+<div id="dia"></div>
+<div id="tb">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="add()">添加</a>
+    <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="delet()">删除</a>
+    <span>输入编码搜索:</span>
+    <input id="itemid" class="easyui-textbox">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="doSearch()">搜索</a>
+
+
+</div>
+<div id="win" style="text-align:center;font-size:20px;"></div>  
+
+</body>
+</html>

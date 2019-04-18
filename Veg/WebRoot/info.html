@@ -1,0 +1,117 @@
+<!-- 大棚信息添加 -->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="info_layout" class="easyui-layout" style="width:600px;height:500px;" data-options="fit:true">
+
+<form id="f1" method="post">
+    <div data-options="region:'west',border:false" style="margin-left: 100px;margin-top: 30px">
+    <div >
+        <label>大棚编号:&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="a" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>所在省:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="b" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>所在市:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="c" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>所在县(区):</label>
+        <input class="easyui-validatebox" type="text" name="d" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>所在村:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="e" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>经度:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="f" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>纬度:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="g" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+        </div>
+    <div data-options="region:'center',border:false" style="margin-top: 50px">
+    <div>
+        <label>身份证号:</label>
+        <input class="easyui-validatebox" type="text" name="h" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>面积:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="easyui-validatebox" type="text" name="i" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        <br/><br/>
+    <div>
+        <label>大棚类型:</label>
+        <select id="cc" class="easyui-combobox" name="j" style="width:200px;">
+            <option value="玻璃">玻璃</option>
+            <option value="阳光板">阳光板</option>
+            <option value="薄膜">薄膜</option>
+        </select>
+    </div>
+        <br/><br/>
+    <div>
+        <label>主体结构类型:</label>
+        <select id="dd" class="easyui-combobox" name="k" style="width:200px;">
+            <option value="竹木结构温室">竹木结构温室</option>
+            <option value="钢筋混凝土结构温室">钢筋混凝土结构温室</option>
+            <option value="钢结构温室">钢结构温室</option>
+            <option value="铝合金温室">铝合金温室</option>
+            <option value="其他材料温室">其他材料温室</option>
+        </select>
+    </div>
+        <br/><br/>
+    <div>
+        <label>建造日期:</label>
+        <input class="easyui-datebox" type="text" name="l" data-options="required:true,missingMessage:'此处不能为空'" />
+    </div>
+        </div>
+       
+        <div data-options="region:'south',border:false" style="margin-left: 500px;height: 100px;margin-top:40px">
+        
+    <div>
+        <input type="submit" value="提交" style="background:#1E90FF;font-family:Microsoft YaHei;color:white;border:0;width:100px;height:30px" />
+    </div>
+        </div>
+
+
+
+
+</form>
+               <script>
+  $(function () {
+    //JS 加载调用
+    $('#f1').form({
+      url : 'InServlet',
+      onSubmit: function(){
+      var isValid = $(this).form('validate');
+		
+		return isValid;	// 返回false终止表单提交
+      },
+      success:function(data){
+        alert(data);
+        $("#f1").form('clear');
+      }
+    });
+  });
+</script>
+
+    </div>
+</body>
+</html>

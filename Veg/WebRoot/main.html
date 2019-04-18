@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>蔬菜基地管理系统</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+    <script type="text/javascript" src="easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function () {
+
+            $("#main_tree").tree({
+                onClick:function(node){
+                    if($("#menu_tree").tree("isLeaf",node.target)){
+                        if($("#main_tabs").tabs("exists",node.text)) {
+                            $("#main_tabs").tabs("select",node.text);
+                        }else
+                        {
+                            $("#main_tabs").tabs(
+                                    "add",{
+                                        title:node.text,
+                                        href:node.attributes.url,
+                                        closable:true
+                                    })
+                        }
+                    }
+                }
+
+            });
+                    	
+        });
+
+
+    </script>
+   
+</head>
+<body class="easyui-layout"data-options="fit:true">
+<div data-options="region:'north',split:false,collapsible:false" style="height:100px;">
+    <img src="hebau.png" alt="蔬菜管理系统" style="width: 100%;height: 100%"/>
+</div>
+<div data-options="region:'west',title:'菜单栏',split:false,collapsible:false" style="width:200px;">
+    <a href="ExitServlet" style="color:blue;text-decoration:none;background-color:white;font-size:16px">退出登录</a>
+    <ul id="main_tree" class="easyui-tree">
+        <li>
+        <span>信息管理系统</span>
+        <ul>
+            <li data-options="attributes:{'url':'info.html'}">
+                <span>大棚信息管理</span>
+            </li>
+            <li data-options="attributes:{'url':'info_2.html'}">
+                <span>种植信息管理</span>
+            </li>
+            <li data-options="attributes:{'url':'info_3.html'}">
+                <span>灌溉日志管理</span>
+            </li>
+            <li data-options="attributes:{'url':'info_4.html'}">
+                <span>施肥日志管理</span>
+            </li>
+            <li data-options="attributes:{'url':'info_5.html'}">
+                <span>植保日志管理</span>
+            </li>
+            <li data-options="attributes:{'url':'info_6.html'}">
+                <span>收获日志管理</span>
+            </li>
+        </ul>
+    </li>
+
+        <li>
+            <span>信息查询</span>
+            <ul>
+                <li data-options="attributes:{'url':'ch.html'}">
+                    <span>大棚信息</span>
+                </li>
+                <li data-options="attributes:{'url':'ch_2.html'}">
+                    <span>种植信息</span>
+                </li>
+                <li data-options="attributes:{'url':'ch_3.html'}">
+                    <span>灌溉日志</span>
+                </li>
+                <li data-options="attributes:{'url':'ch_4.html'}">
+                    <span>施肥日志</span>
+                </li>
+                <li data-options="attributes:{'url':'ch_5.html'}">
+                    <span>植保日志</span>
+                </li>
+                <li data-options="attributes:{'url':'ch_6.html'}">
+                    <span>收获日志</span>
+                </li>
+            </ul>
+        </li>
+        </ul>
+
+
+
+
+
+
+</div>
+<div data-options="region:'center',title:'操作',split:false" style="padding:5px;background:white;">
+    <div id="main_tabs" class="easyui-tabs" style="width:500px;height:250px;" data-options="fit:true">
+        <div title="主页" style="padding:20px;" data-options="closable:true">
+            欢迎来到管理系统
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+</html>
